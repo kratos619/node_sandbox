@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const uuidV1 = require('uuid/v1');
 
 const p = path.join(
   path.dirname(process.mainModule.filename),
@@ -26,6 +27,7 @@ module.exports = class Product {
   }
 
   save() {
+    this.id = uuidV1();
     getProductsFromFile(products => {
       products.push(this);
       fs.writeFile(p, JSON.stringify(products), err => {
