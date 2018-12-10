@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
 const sequelize = require('./util/database');
-
+const product = require('./models/product');
+const user = require('./models/User');
 
 const app = express();
 
@@ -15,14 +16,6 @@ app.set('views', 'views');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
-sequelize.sync()
-    .then((result) => {
-
-    })
-    .catch((e) => {
-        console.log(e);
-
-    })
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -32,4 +25,19 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 app.use(errorController.get404);
-app.listen(3000);
+product.belongsTo(user, {
+    constraints: true,
+    onDelete: 'CASCADE'
+});
+user.hasMany(product);
+sequelize.sync({
+        force: true
+    })
+    .then((result) => {
+        app.listen(3000);
+
+    })
+    .catch((e) => {
+        console.log(e);
+
+    })
