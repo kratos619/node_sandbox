@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const errorController = require('./controllers/error');
-//const User = require('./models/user');
+const User = require('./models/user');
 
 const app = express();
 
@@ -37,6 +37,14 @@ app.use(errorController.get404);
 mongoose
   .connect('mongodb://localhost/node_complete')
   .then(result => {
+    const user = new User({
+      name: 'Gaurav',
+      email: 'gaurav.pal@gmail.com',
+      cart: {
+        items: []
+      }
+    });
+    user.save();
     app.listen(3000);
   })
   .catch(err => {
