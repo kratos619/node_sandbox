@@ -19,6 +19,7 @@
     "graphql": "^15.3.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.1.0",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "validator": "^13.1.1"
   }
 }
