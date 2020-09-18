@@ -5,12 +5,10 @@ class FeedController {
   static async getPosts(req, res) {
     try {
       const response = await posts.findAll();
-      return response;
-      // return res.status(200).json({
-      //   result: response,
-      // });
+      return res.status(200).json({
+        result: response,
+      });
     } catch (error) {
-      return error;
       return res.status(200).json({
         result: error,
       });

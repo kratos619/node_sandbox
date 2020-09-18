@@ -8,5 +8,4 @@ const sequelizePool = new Sequelize(
     dialect: "mysql",
   }
 );
-
 module.exports = sequelizePool;
