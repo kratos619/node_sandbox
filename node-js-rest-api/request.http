@@ -1,2 +1,3 @@
 GET http://localhost:3000/feed/post
 ###
+POST  http://localhost:3000/feed/crete
