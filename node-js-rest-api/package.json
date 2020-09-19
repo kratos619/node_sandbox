@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
+    "startDev2": "nodemon app2.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

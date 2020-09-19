@@ -1,3 +1,13 @@
-GET http://localhost:3000/feed/post
-###
-POST  http://localhost:3000/feed/crete
+GET http://localhost:5000/feed/post
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDA1MDc4ODYsImV4cCI6MTYwMDUwNzkwMSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdCJ9.h-Uh3SJfiZkSZAmoa85AyHzovgapQfGF8yVrMS_5R8U
+
+
+### login
+POST  http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email" : "gaurav@gmail.com",
+    "password" : "123456789"
+ }

@@ -10,6 +10,7 @@ module.exports = {
             err: "invalid token",
           });
         } else {
+          console.log(decode);
           next();
         }
       });

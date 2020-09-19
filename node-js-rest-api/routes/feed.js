@@ -4,7 +4,7 @@ const FeedController = require("../controller/feed");
 const { auth } = require("../middlewares/token");
 const router = express.Router();
 
-router.get("/post", FeedController.getPosts);
+router.get("/post", auth, FeedController.getPosts);
 router.post(
   "/post/create",
   auth,
