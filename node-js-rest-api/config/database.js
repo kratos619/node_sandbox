@@ -1,5 +1,5 @@
 const { Sequelize } = require("sequelize");
-const sequelizePool = new Sequelize(
+const sequelize = new Sequelize(
   process.env.DB_DATABASE,
   process.env.DB_USERNAME,
   process.env.DB_PASSWORD,
@@ -8,4 +8,12 @@ const sequelizePool = new Sequelize(
     dialect: "mysql",
   }
 );
-module.exports = sequelizePool;
+sequelize
+  .authenticate()
+  .then(function (err) {
+    console.log("Connection has been established successfully.");
+  })
+  .catch(function (err) {
+    console.log("Unable to connect to the database:", err);
+  });
+module.exports = sequelize;
