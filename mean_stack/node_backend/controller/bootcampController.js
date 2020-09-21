@@ -7,6 +7,7 @@
 exports.getBootCamps = (req, res, next) => {
   return res.status(200).json({
     result: "all bootcamps",
+    middleware: req.hello,
   });
 };
 
