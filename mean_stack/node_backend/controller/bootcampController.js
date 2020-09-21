@@ -28,7 +28,7 @@ class BootCampController {
    * @type    GET
    */
   static getBootCampById = async (req, res, next) => {
-    let selectedId = req.param("id");
+    let selectedId = req.params.id;
     try {
       const bootCamps = await BootCampSchema.findById(selectedId);
       return res.status(200).json({
@@ -72,9 +72,8 @@ class BootCampController {
    * @type    POST
    */
   static updateBootCamp = async (req, res, next) => {
-    console.log(req.params.id);
     try {
-      const updateSelected = BootCampSchema.findByIdAndUpdate(
+      const updateSelected = await BootCampSchema.findByIdAndUpdate(
         req.params.id,
         req.body,
         {
@@ -84,13 +83,12 @@ class BootCampController {
       );
       return res.status(200).json({
         success: true,
-        message: updateSelected,
-        a: req.body,
+        message: "message",
+        data: updateSelected,
       });
     } catch (error) {
-      console.log(error);
       return res.status(400).json({
-        success: true,
+        success: false,
         message: error,
       });
     }
@@ -102,10 +100,22 @@ class BootCampController {
    * @access  Private
    * @type    POST
    */
-  static deleteBootCamp = (req, res, next) => {
-    return res.status(200).json({
-      result: "delete bootcamp",
-    });
+  static deleteBootCamp = async (req, res, next) => {
+    try {
+      const updateSelected = await BootCampSchema.findByIdAndDelete(
+        req.params.id
+      );
+      return res.status(200).json({
+        success: true,
+        message: "message",
+        data: updateSelected,
+      });
+    } catch (error) {
+      return res.status(400).json({
+        success: false,
+        message: error,
+      });
+    }
   };
 }
 
