@@ -1,3 +1,4 @@
+const BootCampSchema = require("../models/BootCamp");
 class BootCampController {
   /**
    * @desc  get all bootcamps
@@ -5,11 +6,19 @@ class BootCampController {
    * @access  Public
    * @type    GET
    */
-  static getBootCamps = (req, res, next) => {
-    return res.status(200).json({
-      result: "all bootcamps",
-      middleware: req.hello,
-    });
+  static getBootCamps = async (req, res, next) => {
+    try {
+      const bootCamps = await BootCampSchema.find();
+      return res.status(200).json({
+        success: true,
+        data: bootCamps,
+      });
+    } catch (error) {
+      return res.status(401).json({
+        success: false,
+        error: error,
+      });
+    }
   };
 
   /**
@@ -18,11 +27,20 @@ class BootCampController {
    * @access  Public
    * @type    GET
    */
-  static getBootCampById = (req, res, next) => {
-    return res.status(200).json({
-      result: "single bootcamp",
-      param: req.param("id"),
-    });
+  static getBootCampById = async (req, res, next) => {
+    let selectedId = req.param("id");
+    try {
+      const bootCamps = await BootCampSchema.findById(selectedId);
+      return res.status(200).json({
+        success: true,
+        data: bootCamps || "no data found",
+      });
+    } catch (error) {
+      return res.status(401).json({
+        success: false,
+        error: error,
+      });
+    }
   };
 
   /**
@@ -31,10 +49,20 @@ class BootCampController {
    * @access  Private
    * @type    POST
    */
-  static createBootCamp = (req, res, next) => {
-    return res.status(200).json({
-      result: "create bootcamp",
-    });
+  static createBootCamp = async (req, res, next) => {
+    try {
+      const createBootcamp = await BootCampSchema.create(req.body);
+      return res.status(200).json({
+        success: true,
+        message: "bootcamp created",
+        createBootcamp,
+      });
+    } catch (error) {
+      return res.status(401).json({
+        success: false,
+        message: error,
+      });
+    }
   };
 
   /**
@@ -43,10 +71,29 @@ class BootCampController {
    * @access  Private
    * @type    POST
    */
-  static updateBootCamp = (req, res, next) => {
-    return res.status(200).json({
-      result: "update bootcamp",
-    });
+  static updateBootCamp = async (req, res, next) => {
+    console.log(req.params.id);
+    try {
+      const updateSelected = BootCampSchema.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+      return res.status(200).json({
+        success: true,
+        message: updateSelected,
+        a: req.body,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        success: true,
+        message: error,
+      });
+    }
   };
 
   /**

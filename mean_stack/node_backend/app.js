@@ -8,6 +8,7 @@ const bootCampRoutes = require("./routes/bootcamps");
 if (process.env.APP_ENV == "development") {
   app.use(logger);
 }
+app.use(express.json());
 
 app.use("/api/v1/bootcamps", bootCampRoutes);
 connectDB();
