@@ -4,7 +4,7 @@ const BootCampSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "name field required"],
-    unique: true,
+    unique: [true, "is alredy taken"],
     trim: true,
     maxlength: [50, "Name can not be more thane 50 characters"],
   },
