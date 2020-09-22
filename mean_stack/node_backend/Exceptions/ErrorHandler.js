@@ -5,7 +5,6 @@ const ErrorHandler = (err, req, res, next) => {
   let error = { ...err };
   // logg to consol for dev
   error.message = err.message;
-  // console.log(err.name);
   console.log(error);
 
   if (err.name === "CastError") {
@@ -25,7 +24,6 @@ const ErrorHandler = (err, req, res, next) => {
   }
   if (err.code === 11000) {
     const message = `Duplicate Field Value Enter `;
-
     error = new ErrorResponse(message, 404);
   }
   res.status(error.statusCode || 500).json({
