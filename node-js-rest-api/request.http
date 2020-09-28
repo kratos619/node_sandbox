@@ -4,10 +4,21 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDA1MDc4ODYsImV4
 
 
 ### login
-POST  http://localhost:5000/login
+POST  http://localhost:3000/login
 Content-Type: application/json
 
 {
     "email" : "gaurav@gmail.com",
     "password" : "123456789"
- }
+}
+
+### create User
+POST  http://localhost:3000/user/create
+Content-Type: application/json
+
+{
+    "name" : "",
+    "email" : "",
+    "password" : "",
+    "user_type": ""
+}

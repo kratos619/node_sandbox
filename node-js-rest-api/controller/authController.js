@@ -27,7 +27,7 @@ module.exports = {
         return res.json({ message: "password not match" });
       }
     } catch (error) {
-      return res.json({ message: "auth fail" });
+      return res.json({ message: "auth fail", error });
     }
   },
 };
