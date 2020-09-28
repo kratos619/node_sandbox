@@ -9,11 +9,17 @@ router.post(
     check("email", "email required")
       .isEmail()
       .custom((value, { req }) => {
-        return users.findOne({ email: value }).then((res) => {
-          if (res) {
-            return Promise.reject("Email alreay taken pick diffrent one");
-          }
-        });
+        return users
+          .findOne({
+            where: {
+              email: value,
+            },
+          })
+          .then((res) => {
+            if (res) {
+              return Promise.reject("Email alreay taken pick diffrent one");
+            }
+          });
       }),
     check("password", "password field required").notEmpty(),
   ],

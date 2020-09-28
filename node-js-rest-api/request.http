@@ -17,8 +17,8 @@ POST  http://localhost:3000/user/create
 Content-Type: application/json
 
 {
-    "name" : "",
-    "email" : "gaura1v@mail.com",
-    "password" : "",
+    "name" : "aflatoon",
+    "email" : "gaura1v1@aflatoon.com",
+    "password" : "123456789",
     "user_type": "admin"
 }
